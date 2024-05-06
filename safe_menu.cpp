@@ -5,8 +5,10 @@ using namespace std;
 template <class T>
 bool safe_input(T& v) {
 	bool result = (cin >> v) && (cin.get() == '\n');
-	cin.clear();
-	cin.ignore(cin.rdbuf()->in_avail());
+	if (cin.fail()) {
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	}
 	return result;
 }
 
